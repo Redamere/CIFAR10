@@ -44,16 +44,28 @@ model.add(layers.Dense(10)) #output layer, 10 neurons because it is the amount o
 
 #-----Time to train the model-----#
 
-model.compile(optimizer='adam',
-              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-              metrics=['accuracy']
-)
+# model.compile(optimizer='adam',
+#               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+#               metrics=['accuracy']
+# )
 
-history = model.fit(train_images, train_labels, epochs=7, validation_data=(test_images,test_labels))
+# history = model.fit(train_images, train_labels, epochs=7, validation_data=(test_images,test_labels))
 
 #-----Evaluating the model-----#
 
-test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
+# test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
 
-print(test_acc)
+# print(test_acc)
 
+#Saving whole model
+# SavedModel format -- no file ending 
+# HDF5 format -- uses 'h5' as file ending
+
+# model.save("Cifar10_nn.h5")
+
+# To load a model, use 'new_model = keras.models.load_model('model_name.nn')
+
+new_model = keras.models.load_model("Cifar10_nn.h5")
+new_model.evaluate(test_images, test_labels, verbose=2)
+
+# Saving this model was a success
